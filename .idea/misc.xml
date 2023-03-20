@@ -6,10 +6,13 @@
         <entry key="..\:/Users/David/AndroidStudioProjects/VeeSyx/app/src/main/res/drawable-v24/background_shape.xml" value="0.1955" />
         <entry key="..\:/Users/David/AndroidStudioProjects/VeeSyx/app/src/main/res/drawable-v24/btnblueish.xml" value="0.1955" />
         <entry key="..\:/Users/David/AndroidStudioProjects/VeeSyx/app/src/main/res/drawable-v24/whitemail.xml" value="0.1955" />
+        <entry key="..\:/Users/David/AndroidStudioProjects/VeeSyx/app/src/main/res/layout/activity_chef_food_panel_bottom_navigation.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/David/AndroidStudioProjects/VeeSyx/app/src/main/res/layout/activity_chef_forgot_password.xml" value="0.19384057971014493" />
         <entry key="..\:/Users/David/AndroidStudioProjects/VeeSyx/app/src/main/res/layout/activity_chef_registration.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/David/AndroidStudioProjects/VeeSyx/app/src/main/res/layout/activity_chef_verify_phone.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/David/AndroidStudioProjects/VeeSyx/app/src/main/res/layout/activity_cheflogin.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/David/AndroidStudioProjects/VeeSyx/app/src/main/res/layout/activity_chefloginphone.xml" value="0.1693840579710145" />
+        <entry key="..\:/Users/David/AndroidStudioProjects/VeeSyx/app/src/main/res/layout/activity_chefsendotp.xml" value="0.19384057971014493" />
         <entry key="..\:/Users/David/AndroidStudioProjects/VeeSyx/app/src/main/res/layout/activity_choose_one.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/David/AndroidStudioProjects/VeeSyx/app/src/main/res/layout/activity_delivery_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/David/AndroidStudioProjects/VeeSyx/app/src/main/res/layout/activity_delivery_loginphone.xml" value="0.1693840579710145" />

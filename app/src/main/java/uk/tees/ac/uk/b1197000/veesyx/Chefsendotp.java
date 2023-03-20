@@ -23,7 +23,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class ChefVerifyPhone extends AppCompatActivity {
+public class Chefsendotp extends AppCompatActivity {
     String verificationId;
     FirebaseAuth FAuth;
     Button verify , Resend ;
@@ -34,9 +34,9 @@ public class ChefVerifyPhone extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chef_verify_phone);
+        setContentView(R.layout.activity_chefsendotp);
         getSupportActionBar().hide();
-        phoneno = getIntent().getStringExtra("phonenumber").trim();
+        phoneno = getIntent().getStringExtra("Phonenum").trim();
 
         entercode = (EditText) findViewById(R.id.code);
         txt = (TextView) findViewById(R.id.text);
@@ -115,8 +115,13 @@ public class ChefVerifyPhone extends AppCompatActivity {
                 }.start();
             }
         });
-
     }
+    private void Resendotp(String phonenum) {
+
+        sendverificationcode(phonenum);
+    }
+
+
     private void sendverificationcode(String number) {
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
@@ -127,10 +132,6 @@ public class ChefVerifyPhone extends AppCompatActivity {
                 TaskExecutors.MAIN_THREAD,
                 mcallBack
         );
-    }
-    private void Resendotp(String phonenum) {
-
-        sendverificationcode(phonenum);
     }
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mcallBack=new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
         @Override
@@ -145,7 +146,7 @@ public class ChefVerifyPhone extends AppCompatActivity {
 
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
-            Toast.makeText(ChefVerifyPhone.this , e.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(Chefsendotp.this , e.getMessage(),Toast.LENGTH_LONG).show();
 
         }
 
@@ -161,24 +162,24 @@ public class ChefVerifyPhone extends AppCompatActivity {
     private void verifyCode(String code) {
 
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId , code);
-        linkCredential(credential);
+        signInWithPhone(credential);
     }
 
-    private void linkCredential(PhoneAuthCredential credential) {
+    private void signInWithPhone(PhoneAuthCredential credential) {
 
-        FAuth.getCurrentUser().linkWithCredential(credential)
-                .addOnCompleteListener(ChefVerifyPhone.this, new OnCompleteListener<AuthResult>() {
+        FAuth.signInWithCredential(credential)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-
-                            Intent intent = new Intent(ChefVerifyPhone.this , MainMenu.class);
-                            startActivity(intent);
+                            startActivity(new Intent(Chefsendotp.this,ChefFoodPanel_BottomNavigation.class));
                             finish();
+
                         }else{
-                            ReusableCodeForAll.ShowAlert(ChefVerifyPhone.this,"Error",task.getException().getMessage());
+                            ReusableCodeForAll.ShowAlert(Chefsendotp.this,"Error",task.getException().getMessage());
                         }
+
                     }
                 });
 

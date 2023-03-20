@@ -18,6 +18,7 @@ public class ChooseOne extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_one);
+        getSupportActionBar().hide();
 
         AnimationDrawable animationDrawable = new AnimationDrawable();
         animationDrawable.addFrame(getResources().getDrawable(R.drawable.bg2),3000);

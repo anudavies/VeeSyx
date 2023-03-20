@@ -10,5 +10,6 @@ public class Delivery_Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_login);
+        getSupportActionBar().hide();
     }
 }

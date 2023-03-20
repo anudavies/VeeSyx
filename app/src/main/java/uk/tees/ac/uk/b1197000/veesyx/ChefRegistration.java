@@ -44,7 +44,7 @@ public class ChefRegistration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chef_registration);
-
+        getSupportActionBar().hide();
         Fname = (TextInputLayout)findViewById(R.id.Firstname);
         Lname = (TextInputLayout)findViewById(R.id.Lastname);
         Email = (TextInputLayout)findViewById(R.id.Email);
@@ -108,7 +108,7 @@ public class ChefRegistration extends AppCompatActivity {
             }
         });
 
-        databaseReference = firebaseDatabase.getInstance("https://veesyx-default-rtdb.firebaseio.com").getReference("Chef");
+        databaseReference = firebaseDatabase.getInstance().getReference("Chef");
         FAuth = FirebaseAuth.getInstance();
         signup.setOnClickListener(new View.OnClickListener() {
             @Override

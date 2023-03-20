@@ -4,12 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Delivery_Loginphone extends AppCompatActivity {
+public class ChefForgotPassword extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delivery_loginphone);
-        getSupportActionBar().hide();
+        setContentView(R.layout.activity_chef_forgot_password);
     }
 }
