@@ -52,7 +52,7 @@ public class Registration extends AppCompatActivity {
         cpass = (TextInputLayout)findViewById(R.id.confirmpass);
         mobileno = (TextInputLayout)findViewById(R.id.Mobilenumber);
         localaddress = (TextInputLayout)findViewById(R.id.Localaddress);
-        pincode = (TextInputLayout)findViewById(R.id.Pincodee);
+        pincode = (TextInputLayout)findViewById(R.id.Pincode);
         Statespin = (Spinner) findViewById(R.id.Statee);
         Cityspin = (Spinner) findViewById(R.id.Citys);
         area = (TextInputLayout)findViewById(R.id.Area);

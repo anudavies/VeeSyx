@@ -66,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
                                     finish();
 
                                 }
+                                if(role.equals("Customer")){
+                                    startActivity(new Intent(MainActivity.this,CustomerFoofPanel_BottomNavigation.class));
+                                    finish();
+
+                                }
                             }
 
                             @Override

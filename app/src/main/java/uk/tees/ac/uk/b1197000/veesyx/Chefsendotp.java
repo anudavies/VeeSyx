@@ -36,7 +36,8 @@ public class Chefsendotp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chefsendotp);
         getSupportActionBar().hide();
-        phoneno = getIntent().getStringExtra("Phonenum").trim();
+
+        phoneno = getIntent().getStringExtra("Phonenumber").trim();
 
         entercode = (EditText) findViewById(R.id.code);
         txt = (TextView) findViewById(R.id.text);
@@ -99,7 +100,7 @@ public class Chefsendotp extends AppCompatActivity {
                     public void onTick(long millisUntilFinished) {
 
                         txt.setVisibility(View.VISIBLE);
-                        txt.setText("Resend Code Within"+millisUntilFinished/1000+"Seconds");
+                        txt.setText("Resend Code Within "+millisUntilFinished/1000+" Seconds");
 
                     }
 
@@ -115,7 +116,9 @@ public class Chefsendotp extends AppCompatActivity {
                 }.start();
             }
         });
+
     }
+
     private void Resendotp(String phonenum) {
 
         sendverificationcode(phonenum);
@@ -133,6 +136,7 @@ public class Chefsendotp extends AppCompatActivity {
                 mcallBack
         );
     }
+
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mcallBack=new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
@@ -184,4 +188,5 @@ public class Chefsendotp extends AppCompatActivity {
                 });
 
     }
+
 }
