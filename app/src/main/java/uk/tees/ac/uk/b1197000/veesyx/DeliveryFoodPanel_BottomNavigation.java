@@ -9,6 +9,8 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import uk.tees.ac.uk.b1197000.veesyx.chefFoodPanel.ChefOrderFragment;
+import uk.tees.ac.uk.b1197000.veesyx.chefFoodPanel.ChefPendingOrderFragment;
 import uk.tees.ac.uk.b1197000.veesyx.deliveryFoodPanel.DeliveryPendingOrderFragment;
 import uk.tees.ac.uk.b1197000.veesyx.deliveryFoodPanel.DeliveryShipOrderFragment;
 
@@ -20,6 +22,15 @@ public class DeliveryFoodPanel_BottomNavigation extends AppCompatActivity implem
         setContentView(R.layout.activity_delivery_food_panel_bottom_navigation);
         BottomNavigationView navigationView = findViewById(R.id.delivery_bottom_navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
+        String name = getIntent().getStringExtra("PAGE");
+        if(name != null){
+            if(name.equalsIgnoreCase("Orderpage")){
+                loaddeliveryfragment(new DeliveryPendingOrderFragment());
+            }
+        }
+        else{
+            loaddeliveryfragment(new DeliveryPendingOrderFragment());
+        }
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

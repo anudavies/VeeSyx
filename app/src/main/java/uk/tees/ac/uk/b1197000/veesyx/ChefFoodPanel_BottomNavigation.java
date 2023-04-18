@@ -13,6 +13,8 @@ import uk.tees.ac.uk.b1197000.veesyx.chefFoodPanel.ChefHomeFragment;
 import uk.tees.ac.uk.b1197000.veesyx.chefFoodPanel.ChefOrderFragment;
 import uk.tees.ac.uk.b1197000.veesyx.chefFoodPanel.ChefPendingOrderFragment;
 import uk.tees.ac.uk.b1197000.veesyx.chefFoodPanel.ChefProfileFragment;
+import uk.tees.ac.uk.b1197000.veesyx.customerFoodPanel.CustomerHomeFragment;
+import uk.tees.ac.uk.b1197000.veesyx.customerFoodPanel.CustomerTrackFragment;
 
 public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -22,6 +24,21 @@ public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements
         setContentView(R.layout.activity_chef_food_panel_bottom_navigation);
         BottomNavigationView navigationView = findViewById(R.id.chef_bottom_navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
+        String name = getIntent().getStringExtra("PAGE");
+        if(name != null){
+            if(name.equalsIgnoreCase("Orderpage")){
+                loadcheffragment(new ChefPendingOrderFragment());
+            }else if (name.equalsIgnoreCase("Confirmpage")){
+                loadcheffragment(new ChefOrderFragment());
+            }else if (name.equalsIgnoreCase("AcceptOrderpage")){
+                loadcheffragment(new ChefOrderFragment());
+            }else if (name.equalsIgnoreCase("Deliveredpage")) {
+                loadcheffragment(new ChefOrderFragment());
+            }
+        }
+        else{
+           loadcheffragment(new ChefOrderFragment());
+        }
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
