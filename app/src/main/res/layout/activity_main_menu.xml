@@ -36,7 +36,7 @@
             android:layout_width="157dp"
             android:layout_height="65dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/title_img" />
+            app:srcCompat="@drawable/logo_1" />
 
         <TextView
             android:id="@+id/textView2"
