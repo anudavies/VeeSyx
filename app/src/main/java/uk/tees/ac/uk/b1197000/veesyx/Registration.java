@@ -30,7 +30,7 @@ import java.util.HashMap;
 public class Registration extends AppCompatActivity {
     String[] Lagos = {"Ikeja","Victoria Island","Lekki"};
     String[] Abuja = {"Gwagwalada","Kubwa","Lugbe"};
-
+    String[] Middlesbrough = {"Cleveland","Stockton"};
     TextInputLayout Fname,Lname,Email,Pass,cpass,mobileno,localaddress,area,pincode;
     Spinner Statespin,Cityspin;
     Button signup, Emaill, Phone;
@@ -80,6 +80,14 @@ public class Registration extends AppCompatActivity {
                 if(statee.equals("Abuja")){
                     ArrayList<String> list = new ArrayList<>();
                     for (String cities : Abuja){
+                        list.add(cities);
+                    }
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(Registration.this,android.R.layout.simple_spinner_item,list);
+                    Cityspin.setAdapter(arrayAdapter);
+                }
+                if(statee.equals("Middlesbrough")){
+                    ArrayList<String> list = new ArrayList<>();
+                    for (String cities : Middlesbrough){
                         list.add(cities);
                     }
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(Registration.this,android.R.layout.simple_spinner_item,list);

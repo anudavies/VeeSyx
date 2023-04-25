@@ -1,14 +1,29 @@
 package uk.tees.ac.uk.b1197000.veesyx;
 
-public class UpdateDishModel {
-    String Dishes,RandomUID,Description,Quantity,Price,ImageURL,ChefId;
+import androidx.annotation.IntegerRes;
 
+import java.io.Serializable;
 
+public class UpdateDishModel implements Serializable {
+    String Dishes,RandomUID,Description,Quantity,ImageURL,ChefId;
+    private int NumberInCart;
+    Integer Price;
 
     public UpdateDishModel(){
 
     }
+    public UpdateDishModel(Integer aDbid, Integer aPrice, String aName, String aType, String aImage) {
+        Price = aPrice;
+        Dishes = aName;
+        ImageURL = aImage;
+    }
 
+    public UpdateDishModel(Integer aDbid, Integer aPrice, String aName, String aType, String aImage, Integer aNumberInCart) {
+        Price = aPrice;
+        Dishes = aName;
+        ImageURL = aImage;
+        NumberInCart = aNumberInCart;
+    }
     public String getDishes() {
         return Dishes;
     }
@@ -41,11 +56,11 @@ public class UpdateDishModel {
         Quantity = quantity;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return Price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         Price = price;
     }
 
@@ -63,5 +78,11 @@ public class UpdateDishModel {
 
     public void setChefId(String chefId) {
         ChefId = chefId;
+    }
+    public int getNumberInCart() {
+        return NumberInCart;
+    }
+    public void setNumberInCart(int numberInCart) {
+        NumberInCart = numberInCart;
     }
 }

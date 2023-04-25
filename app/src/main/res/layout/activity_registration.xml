@@ -105,7 +105,9 @@
                 <com.hbb20.CountryCodePicker
                     android:id="@+id/CountryCode"
                     android:layout_width="120dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    app:ccp_defaultNameCode="GB"
+                    app:ccp_countryPreference="GB,NG,US">
 
                 </com.hbb20.CountryCodePicker>
 

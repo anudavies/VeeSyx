@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">VeeSyx</string>
+    <string name="app_name">VeeSyx Food</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-
+    <string name="add_to_cart">Add to cart</string>
     <string-array name="State">
         <item>Lagos</item>
         <item>Abuja</item>
@@ -26,6 +26,7 @@
         <item>Jollof Rice</item>
         <item>Fried Rice</item>
         <item>Village Rice</item>
+        <item>Pizza</item>
 
 
     </string-array>

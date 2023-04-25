@@ -1,6 +1,7 @@
 package uk.tees.ac.uk.b1197000.veesyx.customerFoodPanel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,21 +13,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import uk.tees.ac.uk.b1197000.veesyx.R;
 import uk.tees.ac.uk.b1197000.veesyx.UpdateDishModel;
+import uk.tees.ac.uk.b1197000.veesyx.entities.ArrayListFood;
+import uk.tees.ac.uk.b1197000.veesyx.entities.Food;
 
 public class CustomerHomeAdapter extends RecyclerView.Adapter<CustomerHomeAdapter.ViewHolder>{
     private Context mcontext;
     private List<UpdateDishModel> updateDishModellist;
+
+    protected ItemListener mListener;
     DatabaseReference databaseReference;
 
-    public CustomerHomeAdapter(Context context , List<UpdateDishModel>updateDishModelslist){
+    public CustomerHomeAdapter(Context context , List<UpdateDishModel>updateDishModelslist,ItemListener itemListener){
 
         this.updateDishModellist = updateDishModelslist;
         this.mcontext = context;
+
+        mListener = itemListener;
     }
 
 
@@ -46,7 +54,7 @@ public class CustomerHomeAdapter extends RecyclerView.Adapter<CustomerHomeAdapte
         updateDishModel.getRandomUID();
         updateDishModel.getChefId();
         holder.Price.setText("Price: £"+updateDishModel.getPrice());
-
+        ((ViewHolder) holder).setData(updateDishModellist.get(position));
     }
 
     @Override
@@ -54,18 +62,48 @@ public class CustomerHomeAdapter extends RecyclerView.Adapter<CustomerHomeAdapte
         return updateDishModellist.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
 
         ImageView imageView;
-        TextView Dishname,Price;
-
+        TextView Dishname,Price,addBtn;
+        Food item;
+        UpdateDishModel items;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.menu_image);
             Dishname = itemView.findViewById(R.id.dishname);
             Price = itemView.findViewById(R.id.dishprice);
+            addBtn = itemView.findViewById(R.id.addBtn);
+
+            itemView.setTag(R.id.dishname, Dishname);
+            itemView.setTag(R.id.price, Price);
+            itemView.setTag(R.id.menu_image, imageView);
+            addBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mcontext, ShowDetailsActivity.class);
+                    intent.putExtra("object", items);
+                    mcontext.startActivity(intent);
+                }
+            });
+        }
+        public void setData(UpdateDishModel item) {
+            this.items = item;
+            Dishname.setText(item.getDishes());
+            Price.setText(String.valueOf(item.getPrice()));
+
+            Picasso.get().load(item.getImageURL()).into(imageView);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (mListener != null) {
+                mListener.onItemClick(item);
+            }
         }
     }
-
+    public interface ItemListener {
+        void onItemClick(Food item);
+    }
 }
