@@ -84,7 +84,7 @@ public class CartManagement {
         ArrayList<UpdateDishModel> listFood = getListCarts();
         double fee = 0;
         for (int i = 0; i < listFood.size(); i++){
-            fee = fee + (listFood.get(i).getPrice() * listFood.get(i).getNumberInCart());
+            fee = fee + (Integer.parseInt(listFood.get(i).getPrice()) * listFood.get(i).getNumberInCart());
         }
         return fee;
     }

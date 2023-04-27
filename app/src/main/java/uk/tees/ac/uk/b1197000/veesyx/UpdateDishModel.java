@@ -7,18 +7,18 @@ import java.io.Serializable;
 public class UpdateDishModel implements Serializable {
     String Dishes,RandomUID,Description,Quantity,ImageURL,ChefId;
     private int NumberInCart;
-    Integer Price;
+    String Price;
 
     public UpdateDishModel(){
 
     }
-    public UpdateDishModel(Integer aDbid, Integer aPrice, String aName, String aType, String aImage) {
+    public UpdateDishModel(Integer aDbid, String aPrice, String aName, String aType, String aImage) {
         Price = aPrice;
         Dishes = aName;
         ImageURL = aImage;
     }
 
-    public UpdateDishModel(Integer aDbid, Integer aPrice, String aName, String aType, String aImage, Integer aNumberInCart) {
+    public UpdateDishModel(Integer aDbid, String aPrice, String aName, String aType, String aImage, Integer aNumberInCart) {
         Price = aPrice;
         Dishes = aName;
         ImageURL = aImage;
@@ -56,11 +56,11 @@ public class UpdateDishModel implements Serializable {
         Quantity = quantity;
     }
 
-    public Integer getPrice() {
+    public String getPrice() {
         return Price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(String price) {
         Price = price;
     }
 

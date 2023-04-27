@@ -47,7 +47,7 @@ public class chef_postDish extends AppCompatActivity {
     Button post_dish;
     Spinner Dishes;
     TextInputLayout desc,qty,pri;
-    String descrption,quantity,price,dishes;
+    String descrption,quantity,dishes,price;
     Uri imageuri;
     private Uri mcropimageuri;
     FirebaseStorage storage;
@@ -187,9 +187,9 @@ public class chef_postDish extends AppCompatActivity {
         }else{
             isValidQuantity=true;
         }
-        if(TextUtils.isEmpty(price)){
+        if(TextUtils.isEmpty(price.toString())){
             pri.setErrorEnabled(true);
-            pri.setError("Please Mention Price");
+            pri.setError("Please Enter Price");
         }else{
             isValidPrice=true;
         }

@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -28,12 +29,14 @@ import java.util.List;
 import uk.tees.ac.uk.b1197000.veesyx.MainMenu;
 import uk.tees.ac.uk.b1197000.veesyx.R;
 import uk.tees.ac.uk.b1197000.veesyx.UpdateDishModel;
+import uk.tees.ac.uk.b1197000.veesyx.customerFoodPanel.Customer;
 
-public class ChefHomeFragment extends Fragment {
+public class ChefHomeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
     RecyclerView recyclerView;
     private List<UpdateDishModel> updateDishModelList;
     private ChefHomeAdapter adapter;
     DatabaseReference dataa;
+    SwipeRefreshLayout swipeRefreshLayout;
     private String State,City,Area;
     @Nullable
     @Override
@@ -45,27 +48,40 @@ public class ChefHomeFragment extends Fragment {
         recyclerView = v.findViewById(R.id.Recycle_menu);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        swipeRefreshLayout = (SwipeRefreshLayout)v.findViewById(R.id.swipelayout);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark,R.color.Red);
         updateDishModelList = new ArrayList<>();
-        String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        dataa = FirebaseDatabase.getInstance().getReference("Chef").child(userid);
-        dataa.addListenerForSingleValueEvent(new ValueEventListener() {
+        swipeRefreshLayout.post(new Runnable() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Chef chef = snapshot.getValue(Chef.class);
-                State = chef.getState();
-                City = chef.getCity();
-                Area = chef.getArea();
-                chefDishes();
+            public void run() {
+                swipeRefreshLayout.setRefreshing(true);
+                String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                dataa = FirebaseDatabase.getInstance().getReference("Chef").child(userid);
+                dataa.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-            }
+                        Chef chef = snapshot.getValue(Chef.class);
+                        State = chef.getState();
+                        City = chef.getCity();
+                        Area = chef.getArea();
+                        chefDishes();
+                    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
+                    }
+                });
             }
         });
+
+
+
         return v;
     }
+
     private void chefDishes() {
 
         String useridd = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -73,6 +89,7 @@ public class ChefHomeFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                swipeRefreshLayout.setRefreshing(true);
                 updateDishModelList.clear();
                 for(DataSnapshot snapshot1:snapshot.getChildren()){
                     UpdateDishModel updateDishModel = snapshot1.getValue(UpdateDishModel.class);
@@ -80,11 +97,12 @@ public class ChefHomeFragment extends Fragment {
                 }
                 adapter = new ChefHomeAdapter(getContext(),updateDishModelList);
                 recyclerView.setAdapter(adapter);
+                swipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
@@ -110,5 +128,10 @@ public class ChefHomeFragment extends Fragment {
         Intent intent = new Intent(getActivity(), MainMenu.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+    }
+
+    @Override
+    public void onRefresh() {
+        chefDishes();
     }
 }

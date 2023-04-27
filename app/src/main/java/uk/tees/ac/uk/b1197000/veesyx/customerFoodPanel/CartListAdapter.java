@@ -46,7 +46,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 
         holder.title.setText(food.get(position).getDishes());
         holder.feeEachItem.setText(String.valueOf(food.get(position).getPrice()));
-        holder.totalEachItem.setText(String.valueOf(Math.round((food.get(position).getNumberInCart() * food.get(position).getPrice()) * 100) / 100));
+        holder.totalEachItem.setText(String.valueOf(Math.round((food.get(position).getNumberInCart() * Integer.parseInt(food.get(position).getPrice())) * 100) / 100));
         holder.num.setText(String.valueOf(food.get(position).getNumberInCart()));
 
         //TODO if image didnt work try second way 2:32

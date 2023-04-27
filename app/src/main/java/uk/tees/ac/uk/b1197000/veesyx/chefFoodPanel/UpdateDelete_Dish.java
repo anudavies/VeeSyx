@@ -54,7 +54,7 @@ public class UpdateDelete_Dish extends AppCompatActivity {
     String dburi;
     private Uri mCropimageuri;
     Button Update_dish,Delete_dish;
-    String description,quantity,price,dishes,ChefId;
+    String description,quantity,dishes,ChefId,price;
     String RandomUID;
     StorageReference ref;
     FirebaseStorage storage;
@@ -256,7 +256,7 @@ public class UpdateDelete_Dish extends AppCompatActivity {
         }else{
             isValidQuantity=true;
         }
-        if(TextUtils.isEmpty(price)){
+        if(TextUtils.isEmpty(price.toString())){
             pri.setErrorEnabled(true);
             pri.setError("Please Mention Price");
         }else{

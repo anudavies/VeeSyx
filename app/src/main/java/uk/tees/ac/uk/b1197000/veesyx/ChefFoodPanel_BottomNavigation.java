@@ -37,7 +37,7 @@ public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements
             }
         }
         else{
-           loadcheffragment(new ChefOrderFragment());
+           loadcheffragment(new ChefHomeFragment());
         }
     }
     @Override

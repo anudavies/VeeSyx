@@ -79,8 +79,6 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
             public void run() {
                 swipeRefreshLayout.setRefreshing(true);
                 String  userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-
                 dataa = FirebaseDatabase.getInstance().getReference("Customer").child(userid);
                 dataa.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
