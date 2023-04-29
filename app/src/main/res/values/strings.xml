@@ -30,4 +30,8 @@
 
 
     </string-array>
+    <string-array name="Payment">
+        <item>Pay On Delivery</item>
+        <item>Card</item>
+    </string-array>
 </resources>

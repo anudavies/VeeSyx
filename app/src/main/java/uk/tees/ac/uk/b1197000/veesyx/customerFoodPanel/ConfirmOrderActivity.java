@@ -110,7 +110,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
         String saveCurrentDate = currentDate.format(calendar.getTime());
 
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm:ss a");
         String saveCurrentTime = currentTime.format(calendar.getTime());
         String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String RandomUID = UUID.randomUUID().toString();
@@ -121,15 +121,17 @@ public class ConfirmOrderActivity extends AppCompatActivity {
 
 
         HashMap<String ,Object> orderMap=new HashMap<>();
-        orderMap.put("Total Amount",totalAmount);
-        orderMap.put("Name",txtFullName.getText().toString());
-        orderMap.put("Phone",txtPhoneNumber.getText().toString());
-        orderMap.put("Address",txtHomeAddress.getText().toString());
-        orderMap.put("City",txtCityName.getText().toString());
+        orderMap.put("orderId", RandomUID);
+        orderMap.put("totalAmount",totalAmount);
+        orderMap.put("name",txtFullName.getText().toString());
+        orderMap.put("phone",txtPhoneNumber.getText().toString());
+        orderMap.put("address",txtHomeAddress.getText().toString());
+        orderMap.put("city",txtCityName.getText().toString());
         orderMap.put("date",saveCurrentDate);
         orderMap.put("time",saveCurrentTime);
-        orderMap.put("State","not shipped");
-
+        orderMap.put("status","not shipped");
+        orderMap.put("foodItems", cartManagement.getListCarts());
+        orderMap.put("paymentMethod","Pay On Delivery");
         OrdersRef.updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
