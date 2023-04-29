@@ -19,6 +19,9 @@
         android:theme="@style/Theme.VeeSyx"
         tools:targetApi="31">
         <activity
+            android:name=".customerFoodPanel.ConfirmOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".customerFoodPanel.ShowDetailsActivity"
             android:exported="false" />
         <activity

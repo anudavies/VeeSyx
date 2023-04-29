@@ -3,15 +3,13 @@ package uk.tees.ac.uk.b1197000.veesyx;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import uk.tees.ac.uk.b1197000.veesyx.customerFoodPanel.CustomerCartFragmnet;
+import uk.tees.ac.uk.b1197000.veesyx.customerFoodPanel.CustomerCartFragment;
 import uk.tees.ac.uk.b1197000.veesyx.customerFoodPanel.CustomerHomeFragment;
 import uk.tees.ac.uk.b1197000.veesyx.customerFoodPanel.CustomerOrdersFragment;
 import uk.tees.ac.uk.b1197000.veesyx.customerFoodPanel.CustomerProfileFragment;
@@ -57,7 +55,7 @@ public class CustomerFoodPanel_BottomNavigation extends AppCompatActivity implem
         }
         switch (item.getItemId()){
             case R.id.cart:
-                fragment=new CustomerCartFragmnet();
+                fragment=new CustomerCartFragment();
                 break;
         }
         switch (item.getItemId()){
@@ -72,7 +70,7 @@ public class CustomerFoodPanel_BottomNavigation extends AppCompatActivity implem
         }
         switch (item.getItemId()){
             case R.id.cart:
-                fragment=new CustomerCartFragmnet();
+                fragment=new CustomerCartFragment();
                 break;
         }
         return loadfragment(fragment);

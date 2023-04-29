@@ -49,11 +49,11 @@ public class CustomerHomeAdapter extends RecyclerView.Adapter<CustomerHomeAdapte
     public void onBindViewHolder(@NonNull CustomerHomeAdapter.ViewHolder holder, int position) {
 
         final UpdateDishModel updateDishModel = updateDishModellist.get(position);
-        Glide.with(mcontext).load(updateDishModel.getImageURL()).into(holder.imageView);
-        holder.Dishname.setText(updateDishModel.getDishes());
+//        Glide.with(mcontext).load(updateDishModel.getImageURL()).into(holder.imageView);
+//        holder.Dishname.setText(updateDishModel.getDishes());
         updateDishModel.getRandomUID();
         updateDishModel.getChefId();
-        holder.Price.setText("Price: £"+updateDishModel.getPrice());
+        //holder.Price.setText("£"+updateDishModel.getPrice());
         ((ViewHolder) holder).setData(updateDishModellist.get(position));
     }
 
@@ -91,7 +91,7 @@ public class CustomerHomeAdapter extends RecyclerView.Adapter<CustomerHomeAdapte
         public void setData(UpdateDishModel item) {
             this.items = item;
             Dishname.setText(item.getDishes());
-            Price.setText(String.valueOf(item.getPrice()));
+            Price.setText("£" + item.getPrice());
 
             Picasso.get().load(item.getImageURL()).into(imageView);
         }

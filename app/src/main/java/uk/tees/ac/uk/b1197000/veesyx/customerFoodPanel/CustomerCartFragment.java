@@ -1,6 +1,7 @@
 package uk.tees.ac.uk.b1197000.veesyx.customerFoodPanel;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +36,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.UUID;
 
+import uk.tees.ac.uk.b1197000.veesyx.OrdersModel;
 import uk.tees.ac.uk.b1197000.veesyx.R;
 import uk.tees.ac.uk.b1197000.veesyx.chefFoodPanel.Chef;
 import uk.tees.ac.uk.b1197000.veesyx.chefFoodPanel.FoodDetails;
@@ -42,11 +44,12 @@ import uk.tees.ac.uk.b1197000.veesyx.chefFoodPanel.chef_postDish;
 import uk.tees.ac.uk.b1197000.veesyx.db.CartManagement;
 import uk.tees.ac.uk.b1197000.veesyx.entities.ChangeNumberItemsListener;
 
-public class CustomerCartFragmnet extends Fragment {
+public class CustomerCartFragment extends Fragment {
     private RecyclerView.Adapter adapter;
     private RecyclerView recyclerViewList;
     private CartManagement cartManagement;
     TextView totalPriceTxt, priceTxt, deliveryTxt, totalTxt, emptyTxt,checkOutTxt;
+    String TotalPrice,RandomUID, userId;
     private double tax;
     private ScrollView scrollView;
     FirebaseStorage storage;
@@ -71,32 +74,53 @@ public class CustomerCartFragmnet extends Fragment {
         cartManagement = new CartManagement(getActivity());
         initList();
         CalculateCart();
+        checkOutTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ConfirmOrderActivity.class);
+                intent.putExtra("Total Price", TotalPrice);
+                startActivity(intent);
+            }
+        });
 
-
-        try {
-            String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            dataa = firebaseDatabase.getInstance().getReference("User").child(userid);
-            dataa.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                    checkOutTxt.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                                //orderFood();
-
-                        }
-                    });
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }catch (Exception e){
-            Log.e("Error: ",e.getMessage());
-        }
+//        try {
+//            String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//            dataa = firebaseDatabase.getInstance().getReference("Orders").child(userid);
+//            dataa.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                    checkOutTxt.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+//                            progressDialog.setTitle("Loading.....");
+//                            progressDialog.show();
+//                            RandomUID = UUID.randomUUID().toString();
+//                            userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//                            //OrdersModel info = new OrdersModel(,RandomUID,ChefId);
+//                            firebaseDatabase.getInstance().getReference("Orders").child(userid).child("UserOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(RandomUID)
+//                                    .setValue(cartManagement.getListCarts()).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                        @Override
+//                                        public void onComplete(@NonNull Task<Void> task) {
+//
+//                                            progressDialog.dismiss();
+//                                            Toast.makeText(getActivity(),"Food Ordered Successfully!",Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    });
+//
+//                        }
+//                    });
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
+//        }catch (Exception e){
+//            Log.e("Error: ",e.getMessage());
+//        }
         return v;
     }
 
@@ -129,7 +153,7 @@ public class CustomerCartFragmnet extends Fragment {
         tax = Math.round((cartManagement.getTotalFee() * percentTax) * 100) / 100;
         double total = Math.round((cartManagement.getTotalFee() + tax + delivery) * 100) / 100;
         double itemTotal = Math.round(cartManagement.getTotalFee() * 100) / 100;
-
+        TotalPrice = String.valueOf(total);
         totalPriceTxt.setText("£" + itemTotal);
         priceTxt.setText("£" + tax);
         deliveryTxt.setText("£" + delivery);

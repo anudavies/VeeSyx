@@ -35,7 +35,11 @@ public class CartManagement {
             listFood.add(item);
         }
         tinyDB.putListObject("CardLists", listFood);
+
         Toast.makeText(context, "Added to Your Cart",Toast.LENGTH_SHORT).show();
+    }
+    public void removeCartList(){
+        tinyDB.remove("CardLists");
     }
     public void insertFoods(UpdateDishModel item){
         ArrayList<UpdateDishModel> listFood = getListCarts();
