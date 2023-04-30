@@ -36,7 +36,9 @@
             <com.hbb20.CountryCodePicker
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:id="@+id/CountryCode"/>
+                android:id="@+id/CountryCode"
+                app:ccp_defaultNameCode="GB"
+                app:ccp_countryPreference="GB,NG,US"/>
             <EditText
                 android:layout_width="132dp"
                 android:layout_height="wrap_content"
