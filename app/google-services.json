@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "893839435938",
+    "firebase_url": "https://veesyx-default-rtdb.firebaseio.com",
+    "project_id": "veesyx",
+    "storage_bucket": "veesyx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893839435938:android:8d9a9102d732b9bb210ffb",
+        "android_client_info": {
+          "package_name": "uk.tees.ac.uk.b1197000.veesyx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "893839435938-9j7qt8si0gemgjjlsimggsf31es5fs97.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uk.tees.ac.uk.b1197000.veesyx",
+            "certificate_hash": "bd063f089de9be21deebf0f25176c6d66f6e942d"
+          }
+        },
+        {
+          "client_id": "893839435938-qdbk2ffn8s85huga69l9t4n0s2ehlvp2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC04xsxZnHe5U4XwUeIEwHXeNyGqHpnCAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "893839435938-qdbk2ffn8s85huga69l9t4n0s2ehlvp2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

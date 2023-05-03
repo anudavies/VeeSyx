@@ -1,3 +1,38 @@
 <resources>
-    <string name="app_name">VeeSyx</string>
+    <string name="app_name">VeeSyx Food</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string-array name="State">
+        <item>Lagos</item>
+        <item>Abuja</item>
+        <item>Middlesbrough</item>
+    </string-array>
+
+    <string-array name="shipper">
+        <item>Shipper 1</item>
+        <item>Shipper 2</item>
+    </string-array>
+
+    <string-array name="DishName">
+        <item>Amala</item>
+        <item>Semo</item>
+        <item>Pounded Yam</item>
+        <item>Fufu</item>
+        <item>Efo Riro</item>
+        <item>Ogbono</item>
+        <item>Ewedu</item>
+        <item>Jollof Rice</item>
+        <item>Fried Rice</item>
+        <item>Village Rice</item>
+        <item>Pizza</item>
+        <item>Cake</item>
+
+
+    </string-array>
+    <string-array name="Payment">
+        <item>Pay On Delivery</item>
+        <item>Card</item>
+    </string-array>
 </resources>
